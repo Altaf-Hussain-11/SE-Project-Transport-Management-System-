@@ -1,10 +1,10 @@
-**Transport Management System for Namal University Mianwali**
+# Transport Management System for Namal University Mianwali
 
 
-**Overview :**
+## Overview :
 The Namal University Transport Management System (NUTMS) is a digital platform designed to automate and modernize the university's transport operations. The system provides students, faculty, and staff with the ability to book seats online, track buses in real time, and receive instant notifications regarding delays or schedule changes. For administrators and drivers, NUTMS offers a centralized platform to manage routes, monitor trips, and generate accurate reports, improving overall efficiency, safety, and user convenience.
 
-**Team Members :**
+## Team Members :
 
 •	Altaf Hussain 
 
@@ -12,7 +12,7 @@ The Namal University Transport Management System (NUTMS) is a digital platform d
 
 •	Rabia Ashraf 
 
-**Requirement Provider (RP) :**
+## Requirement Provider (RP) :
 
 •	Name : Sir Muhammad Bilal
 
@@ -20,54 +20,54 @@ The Namal University Transport Management System (NUTMS) is a digital platform d
 
 •	Department : Computer Science
 
-**Problem Statement :**
+## Problem Statement :
 
 Despite operating a fleet of buses, the current system faces several challenges :
 
- # Manual Coordination :
+**Manual Coordination :**
  Route management, seat bookings, and trip updates are handled via paper or phone, causing delays and miscommunication.
 
-# No Real-Time Updates :
+**No Real-Time Updates :**
 Students and faculty are often unaware of bus locations or delays.
 
- # Seat Management Issues :
+ **Seat Management Issues :**
  Limited control over seat allocation may lead to overcrowding during peak hours.
 
-# Payment and Fine Challenges :
+**Payment and Fine Challenges :**
 Late arrivals or cancellations are not automated.
 
-# Administrative Burden :
+**Administrative Burden :**
 Admins struggle to track usage, performance, and maintenance without a centralized system.
 
 A digital solution is needed to provide online booking, real-time tracking, seat limitation enforcement, notifications, and automated transactions.
 
-**Project Objectives :**
+## Project Objectives :
 
 The key objectives of NUTMS are :
 
-# Online Booking : 
+**Online Booking :**
 Enable students and faculty to reserve seats digitally.
 
-# Separate Day Scholar Service : 
+**Separate Day Scholar Service :** 
 Assign dedicated buses for day scholars with specific time slots.
 
-# Automated Route and Schedule Management: 
+**Automated Route and Schedule Management:** 
 Optimize bus allocation and trip planning.
 
-# Real-Time Tracking and Notifications : 
+**Real-Time Tracking and Notifications :**
 GPS integration for live bus tracking and instant alerts.
 
-# Seat Limitation Enforcement : 
+**Seat Limitation Enforcement :** 
 Prevent overbooking and ensure safety compliance.
 
-# Online Transactions and Automated Deductions : 
+**Online Transactions and Automated Deductions :**
 Manage payments and fines automatically.
 
-# Centralized Admin Dashboard : 
+**Centralized Admin Dashboard :**
 Monitor all bookings, buses, drivers, payments, and generate reports.
 
 
-**Software Development Methodology :**
+## Software Development Methodology :
 
 The Scrum Agile Methodology is used for this project because :
 
@@ -81,7 +81,7 @@ The Scrum Agile Methodology is used for this project because :
 
 •	Promotes team collaboration and continuous improvement.
 
-**Tools and Technologies :**
+## Tools and Technologies :
 
 •	Frontend: HTML, CSS, JavaScript
 
