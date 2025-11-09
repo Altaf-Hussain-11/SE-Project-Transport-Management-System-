@@ -7,7 +7,9 @@ The Namal University Transport Management System (NUTMS) is a digital platform d
 **Team Members :**
 
 •	Altaf Hussain 
+
 •	Najia Nayab 
+
 •	Rabia Ashraf 
 
 **Requirement Provider (RP) :**
