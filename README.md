@@ -20,51 +20,20 @@ The Namal University Transport Management System (NUTMS) is a digital platform d
 
 •	Department : Computer Science
 
-## Problem Statement :
+## Problem Statement
 
-Despite operating a fleet of buses, the current system faces several challenges :
+Despite operating a fleet of buses, the current system faces several challenges, including manual coordination for route management, seat bookings, and trip updates, which often causes delays and miscommunication. Students and faculty lack real-time updates on bus locations or delays, while limited control over seat allocation can lead to overcrowding during peak hours. Payment and fine processes are not automated, and administrators struggle to track usage, performance, and maintenance without a centralized system. A digital solution is needed to provide online booking, real-time tracking, seat limitation enforcement, notifications, and automated transactions.
 
-**Manual Coordination :**
- Route management, seat bookings, and trip updates are handled via paper or phone, causing delays and miscommunication.
 
-**No Real-Time Updates :**
-Students and faculty are often unaware of bus locations or delays.
+## Project Objectives
 
- **Seat Management Issues :**
- Limited control over seat allocation may lead to overcrowding during peak hours.
+The key objectives of NUTMS are:
 
-**Payment and Fine Challenges :**
-Late arrivals or cancellations are not automated.
-
-**Administrative Burden :**
-Admins struggle to track usage, performance, and maintenance without a centralized system.
-
-A digital solution is needed to provide online booking, real-time tracking, seat limitation enforcement, notifications, and automated transactions.
-
-## Project Objectives :
-
-The key objectives of NUTMS are :
-
-**Online Booking :**
-Enable students and faculty to reserve seats digitally.
-
-**Separate Day Scholar Service :** 
-Assign dedicated buses for day scholars with specific time slots.
-
-**Automated Route and Schedule Management:** 
-Optimize bus allocation and trip planning.
-
-**Real-Time Tracking and Notifications :**
-GPS integration for live bus tracking and instant alerts.
-
-**Seat Limitation Enforcement :** 
-Prevent overbooking and ensure safety compliance.
-
-**Online Transactions and Automated Deductions :**
-Manage payments and fines automatically.
-
-**Centralized Admin Dashboard :**
-Monitor all bookings, buses, drivers, payments, and generate reports.
+- **Automated Route and Schedule Management**: Optimize bus allocation and trip planning.  
+- **Real-Time Tracking and Notifications**: GPS integration for live bus tracking and instant alerts for delays, cancellations, or emergencies.  
+- **Seat Limitation Enforcement**: Prevent overbooking and ensure safety compliance.  
+- **Centralized Admin Dashboard**: Monitor all bookings, buses, drivers, payments, and generate performance reports.  
+- **Data Analytics and Reporting**: Generate automatic reports for transport usage, peak hours, and fuel consumption to aid decision-making.  
 
 
 ## Software Development Methodology :
