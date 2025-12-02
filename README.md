@@ -81,17 +81,14 @@ The Scrum Agile Methodology is used for this project because :
 
 •	Promotes team collaboration and continuous improvement.
 
-## Tools and Technologies :
+## User Interface (Frontend)
+- **React.js**: Used to build responsive interfaces such as booking forms and tracking maps.  
+- **HTML & CSS**: Used for page structure and styling.  
+- **Material UI**: Ensures compatibility and smooth display on mobile, tablets, and desktops.  
 
-•	Frontend: HTML, CSS, JavaScript
+## Server Logic (Backend)
+- **Node.js with Express.js**: Manages authentication, APIs, notifications, and booking operations.  
 
-•	Backend: C++
-
-•	Database: MySQL
-
-•	Version Control: Git & GitHub
-
-•	Project Documentation: LaTeX for proposal and report
-
-•	Collaboration: Google Sheets
+## Database
+- **PostgreSQL**: Stores user details, bookings, routes, and payment information.  
 
