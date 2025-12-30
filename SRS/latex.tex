@@ -1,1 +1,927 @@
+\documentclass[12pt,a4paper]{article}
+% =========================
+% Required Packages Only
+% =========================
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{tocloft}
+\usepackage[hidelinks]{hyperref}
+\geometry{margin=1in}
 
+% =========================
+% Header and Footer
+% =========================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+
+% =========================
+% Section Formatting
+% =========================
+\titleformat{\section}{\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries}{\thesubsubsection}{1em}{}
+\titleformat{\paragraph}[runin]{\normalsize\bfseries}{\theparagraph}{1em}{}
+
+\begin{document}
+
+% =========================
+% TITLE PAGE
+% =========================
+\begin{titlepage}
+    \centering
+    \vspace*{1.5cm}
+    
+    {\Large\textbf{Namal University Transport Management System (NUTMS)}\par}
+    \vspace{0.5cm}
+    {\Large\textbf{Software Requirements Specification}\par}
+    \vspace{1cm}
+    
+    \includegraphics[width=5cm]{logo.png}
+    
+    \vspace{2cm}
+    
+    \begin{tabular}{c l l}
+        1 & Altaf Hussain & NUM-BSCS-2024-11 \\
+        2 & Rabia Ashraf  & NUM-BSCS-2024-65 \\
+        3 & Najia Nayab   & NUM-BSCS-2024-62 \\
+    \end{tabular}
+    
+    \vfill
+    
+    {\large Department of Computer Science\par}
+    {\large Namal University Mianwali\par}
+    \vspace{0.3cm}
+    {\normalsize 28\textsuperscript{th} December, 2025\par}
+    
+\end{titlepage}
+
+\newpage
+% =========================
+% TABLE OF CONTENTS
+% =========================
+\renewcommand{\contentsname}{Table of Contents}
+\tableofcontents
+\newpage
+
+% =========================
+% 1. INTRODUCTION
+% =========================
+\section{Introduction}
+
+\subsection{Purpose}
+\subsubsection{Overview of the document}
+This Software Requirements Specification (SRS) document provides a complete and comprehensive description of the requirements for the Namal University Transport Management System (NUTMS).The primary goal is to guide the
+development process and ensure alignment with the expectations of all stakeholder.
+
+\subsubsection{Purpose}
+ The purpose of this document is to:
+\begin{itemize}
+
+    \item Define the functional and non-functional requirements of NUTMS in a clear, precise, and unambiguous manner
+    \item Serve as a reference for the development team to ensure the successful implementation of features.
+    \item Establish a mutual understanding between stakeholders (students, faculty, drivers, administrators, and IT support team) and the development team regarding system functionalities and its constraints.
+    \item Serve as a contractual basis for system development, validation, and verification
+    \item Provide a reference for system maintenance and future enhancements
+\end{itemize}
+
+\subsubsection{Intended Audience}
+This SRS is intended for the following audience:
+
+\begin{itemize}
+    \item \textbf{Software Developers :} To understand system requirements and design appropriate solutions
+    \item \textbf{Testers :} To develop test plans, test cases, and validation criteria
+    \item \textbf{Project Managers :} To plan resources, estimate costs, and track project progress    
+    \item \textbf{Transport Administrators :} To review and validate that the system meets operational needs
+    \item \textbf{University Management :} To understand system scope, benefits, and investment requirements
+\end{itemize}
+
+\subsection{Scope}
+
+\subsubsection{System Identification}
+\textbf{Namal University Transport Management System }is a comprehensive application based platform designed to automate and modernize the university's transport operations.
+
+\subsubsection{System Features}
+NUTMS will provide the following major features and capabilities:
+
+\begin{enumerate}
+    \item \textbf{GPS Tracking :} Real-time bus location tracking with live map visualization and estimated arrival times
+    \item \textbf{Schedule Management :} Comprehensive tools for creating, managing, and publishing bus routes and schedules
+    
+    \item \textbf{Special Vehicle Booking for Faculty :} Faculty can reserve vehicles with the consent of higher authorities for their trips
+    
+    \item \textbf{User Management :} Registration, authentication, and profile management for students, faculty, drivers, and administrators with role based access control
+    \item \textbf{Notification System :} Automated email notifications for booking confirmations, schedule changes and delays
+    \item \textbf{Administrative Dashboard :} Centralized interface for managing users, routes, vehicles, drivers, and generating reports
+    \item \textbf{Reporting and Analytics :} Generation of fuel usage reports, peak hour analysis, and transport performance
+\end{itemize}
+
+\subsubsection{Applications of the Software}
+NUTMS addresses critical operational challenges in Namal University's current transport management system, which relies heavily on manual, paper-based processes. The system will be deployed in the following context:
+
+\textbf{Application Domain :}
+
+\textbf{Beneficiaries:}
+\begin{itemize}
+    \item \textbf{Students :} Real-time bus tracking and timely notifications
+    \item \textbf{Faculty :} Simplified booking process,real-time bus tracking and timely notifications
+    \item \textbf{Drivers :} Clear route assignments and trip schedules
+    \item \textbf{Transport Administrators :} Efficient route management, usage monitoring, and data based decision making
+    \item \textbf{University Management :} Improved operational efficiency and enhanced student satisfaction
+\end{itemize}
+
+\subsubsection{Goals and Benefits}
+
+\begin{enumerate}
+    \item \textbf{Automation :} Replace manual, paper-based processes with a fully automated digital system
+    \item \textbf{Efficiency:} Reduce administrative overhead and simplify transport operations
+    \item \textbf{User Convenience :} Provide easy to use interfaces accessible from any device with internet connectivity
+    \item \textbf{Administrative Supervision :} Enable comprehensive monitoring and reporting of transport operations
+    \item \textbf{Resource Optimization :} Support data based decisions for route planning and vehicle allocation
+    \item \textbf{Safety :} Enforce seat capacity limits and provide emergency notification capabilities
+\end{enumerate}
+
+\subsection{Definitions, Acronyms, and Abbreviations}
+
+\begin{longtable}{|p{4cm}|p{10cm}|}
+\hline
+\textbf{Term/Acronym} & \textbf{Definition} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Term/Acronym} & \textbf{Definition} \\
+\hline
+\endhead
+NUTMS & Namal University Transport Management System - the software product being specified in this document \\
+\hline
+SRS & Software Requirements Specification - this document describing the requirements for system \\
+\hline
+GPS & Global Positioning System - satellite-based navigation system used for real-time bus tracking \\
+\hline
+API & Application Programming Interface - set of protocols for building and integrating application software \\
+\hline
+UI & User Interface - the means by which users interact with the system \\
+\hline
+HTTP/HTTPS & Hypertext Transfer Protocol / Secure - protocols for transmitting data over the web \\
+\hline
+WebSocket & Communication protocol providing full-duplex communication channels over a single TCP connection \\
+\hline
+SMTP & Simple Mail Transfer Protocol - standard for email transmission \\
+\hline
+SQL & Structured Query Language - standard language for managing relational databases \\
+\hline
+\end{longtable}
+
+\subsection{References}
+
+\begin{itemize}
+    \item IEEE Std 830-1984: IEEE Guide to Software Requirements Specifications
+    \item Latex 
+    \item Project Proposal
+\end{itemize}
+
+
+
+\subsection{Overview}
+The remaining document is organized into the following major sections to provide a complete specification of the Namal University Transport Management System:
+
+\textbf{Section 2 : General Description} provides context for the requirements specified in Section 3. It describes the product perspective, product functions, user characteristics, general constraints, and assumptions. This section helps readers understand the general factors that affect the requirements without stating specific requirements themselves.
+
+\textbf{Section 3 : Specific Requirements} contains all detailed software requirements. This section provides complete specifications that developers will use to create the system. Requirements are organized into functional requirements, external interface requirements, performance requirements, design constraints, quality attributes, and other requirements. Each requirement is stated clearly, unambiguously, and in a verifiable manner.
+
+\textbf{Section 4 : Appendices} includes supporting materials such as the Context Diagram, Use Case Diagram, glossary of terms, and references to meeting minutes. These appendices provide visual representations and additional information that enhance understanding of the requirements.
+
+\textbf{Section 5 : Index} provides an alphabetical listing of key terms, requirements, and sections for easy reference and navigation throughout the document.
+\newpage
+
+% =========================
+% 2. General DESCRIPTION
+% =========================
+\section{Genral Description}
+This section provides a comprehensive overview of NUTMS, its context within related systems,major functionalities, user characteristics, and the constraints under which it operates. Rather than specifying detailed requirements, this section sets the foundation for understanding those requirements by offering relevant background and descriptive elements.
+
+\subsection{Product Perspective}
+
+\subsubsection{System Positioning and Independence}
+The Namal University Transport Management System (NUTMS) is being developed as a standalone, independent system specifically designed for Namal University's transport operations. Key positioning characteristics include:
+
+\begin{itemize}
+    \item \textbf{New Development :} NUTMS is a new software product, not a replacement or upgrade of an existing system
+    \item \textbf{Independant :} The system operates independently and does not require integration with existing university systems in the initial release
+    \item \textbf{Future Integration Potential:} While independent initially, the system architecture allows for future integration with university's own software
+    \item \textbf{Dedicated Purpose :} NUTMS focuses exclusively on transport management and does not overlap with other university administrative systems
+\end{itemize}
+\paragraph{Contextual Relationships and Interfaces}
+
+NUTMS interacts with various systems and environments to provide comprehensive transport management services. The web-based application integrates with GPS tracking devices for real-time bus location monitoring and email services for automated notifications. Its interfaces allow smooth operations across :
+
+\begin{itemize}
+    \item \textbf{ External Systems :} GPS devices installed in buses for location tracking, email for notification delivery, OpenStreetMap APIs for map visualization and route display, and potential future integration with university authentication systems.
+    
+    \item \textbf{ Internal Components :} PostgreSQL database for storing user profiles, routes, schedules, and booking records; backend API services for business logic and data processing; real-time WebSocket services for live GPS updates; and booking management system with capacity enforcement algorithms.
+    
+    \item \textbf{ User Interfaces :} Accessible web-based dashboards for students and faculty to browse routes and book seats; administrative panels for managing transport operations, routes, and schedules; driver interfaces for viewing assignments and updating trip status; and real-time map displays for tracking bus locations.
+\end{itemize}
+
+\subsubsection{Operational Environment}
+NUTMS will operate in the following technical and organizational environment:
+
+\paragraph{Platform and Deployment}
+Web-based application hosted on Vercel cloud platform with PostgreSQL database, accessible via HTTPS-secured connections from campus network and internet.
+
+\paragraph{Client Requirements}
+Accessible on desktop computers, laptops, tablets, and smartphones using modern web browsers.
+
+\paragraph{GPS Infrastructure}
+GPS devices installed in university buses with cellular or WiFi connectivity for data transmission via standard API protocols.
+
+\subsection{Product Functions}
+NUTMS is centered around the automation and management of university transport operations. This functionality is achieved through several interrelated components:
+
+
+
+\paragraph{1. GPS Tracking}
+The system integrates with GPS devices installed in university buses to display real time bus locations on interactive maps. Users can track route progress, view estimated arrival times, and monitor multiple buses simultaneously with location updates every 10-30 seconds.
+
+\paragraph{2. Notification System}
+The system delivers automated email notifications for booking confirmations, schedule changes, and cancellations. Users receive alerts about bus delays, route modifications, and emergency notifications. Reminder notifications are sent before scheduled trips, and users can customize their notification preferences.
+
+\paragraph{3. Schedule Management}
+Administrators can create and manage comprehensive route schedules on daily, weekly, and semester basis. The system handles bus and driver assignments, schedule modifications, holiday variations, and automatically integrates schedule changes with the booking system while notifying affected users.
+
+\paragraph{3. Seat Booking}
+Users can reserve seats online through a user friendly interface that displays real-time seat availability. The system provides instant booking confirmation, enforces strict capacity limits to prevent overcrowding, and allows cancellations with appropriate notice. Booking history and receipts are maintained for all users.
+
+\paragraph{4. User Management}
+NUTMS provides comprehensive user registration and authentication system with role-based access control for Students, Faculty, Drivers, and Administrators. Users can manage their profiles, reset passwords, and maintain secure sessions throughout their interaction with the system.
+
+\paragraph{5. Special vehicle Booking for faculty}
+Faculty members can submit special trip requests with complete details including destination, date, purpose, and number of passengers. The system  allowes administrators to approve or reject requests based on vehicle availability and university policies. Approved special trips are scheduled and tracked throughout their lifecycle.
+
+\paragraph{6. Administrative Dashboard}
+Administrators can monitor all bookings and route utilization in real-time through a centralized dashboard. The system provides tools for managing user accounts, driver assignments, and vehicle information. Administrators can override bookings when necessary, view system audit logs, and access comprehensive reporting tools for data-driven decision making.
+
+\paragraph{7. Reporting and Analytics}
+The system generates comprehensive usage reports on daily, weekly, monthly, and semester basis. Administrators can analyze peak hour traffic, route utilization, and booking trends. The system tracks driver performance, monitors trip completion rates, and allows creation of custom reports with various parameters. Reports can be exported in PDF and CSV formats with data visualization through charts and graphs.
+
+\subsection{User Characteristics}
+This section describes the characteristics of users who will interact with the NUTMS system, including their background, experience, and accessibility needs.
+
+\subsubsection{User Categories}
+
+NUTMS is designed to support multiple user groups with different roles and responsibilities:
+
+\begin{itemize}
+    \item \textbf{Students:} Primary users for daily transport booking, bus tracking, and notifications.
+    \item \textbf{Faculty and Staff:} Users for regular academic travel with access via laptops, office computers, and mobile devices.
+    \item \textbf{Drivers:} Users who view assigned routes, passenger lists, and trip status.
+    \item \textbf{Transport Administrators:} Users who manage routes, schedules, users, drivers, and reports.
+    \item \textbf{IT Support Staff:} Users responsible for system maintenance and technical support.
+\end{itemize}
+
+\subsubsection{Experience Levels}
+
+NUTMS is designed to accommodate users with different expertise levels:
+
+\begin{itemize}
+    \item \textbf{Basic Users:} Students, drivers, and some faculty members with limited technical experience.
+    \item \textbf{Intermediate Users:} Faculty and transport administrators with regular experience using web-based systems.
+    \item \textbf{Advanced Users:} IT support staff with professional experience in web applications and databases.
+\end{itemize}
+
+
+
+
+\subsubsection{Accessibility Considerations}
+
+To ensure usability for all users, NUTMS will include the following accessibility features:
+
+\begin{itemize}
+    \item Clear and readable interface with adequate font sizes
+    \item Full keyboard navigation support
+    \item Compatibility with screen readers
+    \item Responsive design for different devices
+    \item Simple and clear language
+    \item Helpful error messages and confirmation prompts
+    \item Built-in help and support resources
+\end{itemize}
+
+
+\subsection{General Constraints}
+\subsubsection{Regulatory Policies}
+\begin{itemize}
+\item \textbf{Academic Calendar:} System availability must align with university academic calendar and breaks
+\item \textbf{Transport Policies:} Adherence to university transport policies regarding passenger limits, route allocations, and special trip approvals
+\item \textbf{Safety Regulations:} Enforcement of vehicle capacity limits as per safety regulations
+\item \textbf{Record Retention:} Booking and trip records must be maintained for minimum of one academic year
+\end{itemize}
+\subsubsection{Hardware Limitations}
+\begin{itemize}
+\item \textbf{GPS Devices:} Dependent on availability and functionality of GPS hardware in university buses
+\item \textbf{Network Infrastructure :} Constrained by campus WiFi coverage and cellular network availability in the region
+\item \textbf{Device Compatibility :} Must function on different devices
+
+\end{itemize}
+\subsubsection{Interfaces to Other Applications}
+\begin{itemize}
+\item \textbf{Email System :} Integration with university SMTP server or external email service for notifications
+\item \textbf{GPS System:} Interface with GPS tracking devices or services used in university buses
+\item \textbf{Map Services :} Dependency on OpenStreetMap data availability and accuracy for Mianwali region
+\end{itemize}
+
+
+\subsubsection{Parallel Operation}
+NUTMS must efficiently handle parallel operations and simultaneous user interactions. This includes:
+
+\paragraph{Real-Time Interaction Management}
+NUTMS must support real-time interactions such as GPS tracking, seat booking, and live schedule updates. The platform must be optimized to handle multiple concurrent users, especially during peak booking periods, without significant delays or performance degradation. The system must process and display location updates from multiple buses simultaneously while managing concurrent booking requests.
+
+\paragraph{Data Integrity Across Sessions}
+When multiple users interact with the platform simultaneously, NUTMS must ensure that shared data remains consistent. For instance, if multiple users attempt to book the last available seat, or multiple administrators modify routes and schedules concurrently, NUTMS must ensure that no data loss or conflicts occur.
+
+\subsubsection{Audit Functions}
+NUTMS must implement comprehensive audit functions to ensure transparency, accountability, and track user activities:
+
+\paragraph{User Action Logging}
+The system shall record important user actions such as seat bookings, cancellations, profile updates, and schedule changes. Each log entry shall include the user ID and the date and time of the action. The system shall also log all login attempts, including successful and failed attempts, to help monitor security and identify unauthorized access.
+
+\paragraph{Audit Trail Accessibility}
+Administrators shall have access to audit trails showing user actions and system activities, including bookings, cancellations, updates, and approvals. These records shall support dispute resolution, detect unauthorized access, and ensure accountability and data protection compliance.
+
+\subsubsection{Control Functions}
+\begin{itemize}
+\item \textbf{Access Control:} Role based access control  to restrict functions based on user roles
+\item \textbf{Capacity Enforcement:} Automatic prevention of bookings exceeding vehicle capacity
+\item \textbf{Session Management:} Automatic session timeout after 30 minutes of inactivity for security
+\item \textbf{Administrative Override:} Administrator ability to override system restrictions when necessary
+\item \textbf{Emergency Controls:} Ability to quickly disable booking or send emergency notifications
+\end{itemize}
+
+\subsection{Higher-Order Language Requirements}
+
+The system shall be developed using the following programming languages and formats, consistent with the selected tools and technologies:
+
+\begin{itemize}
+    \item \textbf{Frontend}: JavaScript using the React.js framework for building responsive and interactive user interfaces.
+    \item \textbf{Backend}: JavaScript using the Node.js runtime with the Express.js framework for server-side logic and API handling.
+    \item \textbf{Database Queries}: SQL for interacting with the PostgreSQL relational database.
+    \item \textbf{Markup and Styling}: HTML for page structure and CSS for styling and layout design.
+    \item \textbf{Configuration Files}: JSON format for application and environment configuration.
+    \item \textbf{Version Control}: GitHub for source code management and collaboration.
+\end{itemize}
+
+\subsubsection{Signal Handshake Protocols}
+\begin{itemize}
+\item \textbf{HTTP/HTTPS:} Standard HTTP methods  for client-server communication
+\item \textbf{WebSocket:} Two way communication protocol for real-time GPS updates using Socket.io library
+\item \textbf{SMTP:} Simple Mail Transfer Protocol for email notifications
+
+\item \textbf{GPS Protocol:} Compatible with standard GPS data formats (NMEA, GPX, or device-specific API)
+\end{itemize}
+
+\subsubsection{Reliability Requirements}
+As a web-based transport management platform, NUTMS must meet high reliability standards to ensure consistent service availability:
+
+\paragraph{System Availability Requirements}
+NUTMS must remain available 99\% of the time during academic semesters with minimal downtime. The system utilizes cloud infrastructure with automatic failure handling to ensure continuous service. Scheduled maintenance is performed during low-usage periods to minimize user impact.
+
+\paragraph{Data Protection and Backup}
+The system performs daily automated database backups with 30-day retention. All user profiles, bookings, routes, and schedules are regularly backed up. System recovery must be completed within 1 hour during operating hours to minimize disruption.
+
+\paragraph{Graceful Degradation}
+Critical functions like user authentication and seat booking remain operational even during component failures. If GPS tracking becomes unavailable, the system displays static schedules and last-known locations, ensuring core booking functionality continues working.
+
+\subsubsection{Criticality of the Application}
+\begin{itemize}
+\item \textbf{Safety-Critical Elements :} Seat capacity enforcement prevents overcrowding and safety violations
+\item \textbf{Academic Impact:} Transport delays or failures can cause students to miss classes and exams
+\item \textbf{Reputational Impact:} System failures reflect poorly on university's technological capabilities
+\item \textbf{Non-Critical Periods:} System can be offline during semester breaks without major impact
+\end{itemize}
+
+\subsubsection{Safety and Security Considerations}
+\begin{itemize}
+\item \textbf{Passenger Safety:} Strict enforcement of vehicle capacity limits to prevent overcrowding
+\item \textbf{Data Security:} Protection of personal information (student IDs, contact details, travel patterns)
+\item \textbf{Authentication Security:} Secure password storage (hashing), protection against brute force attacks
+\item \textbf{Communication Security:} All data transmission over HTTPS with TLS encryption
+\item \textbf{Input Validation:} Protection against SQL injection, XSS, and other common web vulnerabilities
+\item \textbf{Privacy:} Users can only view their own booking history, not others'
+\item \textbf{Emergency Notification:} Critical system feature for safety-related communications
+\end{itemize}
+\subsection{Assumptions and Dependencies}
+\subsubsection{Technical Assumptions}
+\begin{itemize}
+\item University has stable, high-speed internet connectivity on campus 
+
+\item Modern web browsers (released within last 3 years) are available on user devices
+\item Cloud hosting platform (Vercel) provides reliable service with acceptable performance
+\item GPS devices in buses can communicate location data at regular intervals (every 10-30 seconds)
+\item University email system or SMTP service is available for sending notifications
+\item OpenStreetMap data is accurate for Mianwali region and university campus
+\item Database server (PostgreSQL) provides sufficient storage and processing capacity
+\end{itemize}
+\subsubsection{Operational Dependencies}
+\begin{itemize}
+\item \textbf{GPS Infrastructure:} System's real-time tracking feature depends on GPS devices being installed, powered, and operational in all buses
+\item \textbf{Email/SMTP Service:} Notification system depends on availability of email service provider
+\item \textbf{University Network:} On-campus access depends on WiFi infrastructure
+\item \textbf{Internet Service:} Overall system availability depends on continuous internet connectivity
+\item \textbf{Database Availability:} All system functions depend on database server being operational
+\item \textbf{Transport Schedule:} System operates based on defined transport schedules provided by administration
+\item \textbf{User Devices:} End-user access depends on availability of smartphones, tablets, or computers
+\end{itemize}
+
+\newpage
+
+% =========================
+% 3. SPECIFIC REQUIREMENTS
+% =========================
+\section{Specific Requirements}
+
+\subsection{Functional Requirements}
+
+\subsubsection{User Registration and Authentication}
+
+\paragraph{FR-1.1: User Registration}
+\textbf{Description:}  
+The system shall allow students, faculty, drivers, and administrators to register by providing valid personal and institutional details.
+
+\textbf{Input:} Name, university ID, email address, password, user role  
+
+\textbf{Processing:} System validates input data and stores user information securely in the database.  
+
+\textbf{Output:} Successful registration confirmation message  
+
+
+\textbf{Dependency:} None  
+
+\paragraph{FR-1.2: User Authentication}
+\textbf{Description:}  
+The system shall authenticate users using email and password credentials.
+
+\textbf{Input:} Email, password  
+
+\textbf{Processing:} System verifies credentials against stored records.  
+
+\textbf{Output:} Access to user dashboard or error message  
+
+\textbf{Dependency:} FR-1.1  
+
+\paragraph{FR-1.3: Profile Management}
+\textbf{Description:}  
+The system shall allow users to view and update their profile information.
+
+\textbf{Input:} Updated profile details  
+
+\textbf{Processing:} System validates and updates records.  
+
+\textbf{Output:} Updated profile confirmation   
+
+\textbf{Dependency:} FR-1.2  
+
+% ---------------------------------
+
+\subsubsection{Route and Schedule Management}
+
+\paragraph{FR-2.1: Route Definition}
+\textbf{Description:}  
+The system shall allow administrators to define bus routes.
+
+\textbf{Input:} Route name, stops, distance  
+
+\textbf{Processing:} Route data is stored in database.  
+
+\textbf{Output:} Route creation confirmation   
+
+\textbf{Dependency:} FR-1.2  
+
+\paragraph{FR-2.2: Schedule Management}
+\textbf{Description:}  
+The system shall allow administrators to create and modify bus schedules.
+
+\textbf{Input:} Route ID, departure time, arrival time  
+
+\textbf{Processing:} Schedule is linked with route.  
+
+\textbf{Output:} Updated schedule information  
+
+\textbf{Dependency:} FR-2.1  
+
+\paragraph{FR-2.3: Route Assignment}
+\textbf{Description:}  
+The system shall assign buses and drivers to specific routes.
+
+\textbf{Input:} Bus ID, driver ID, route ID  
+
+\textbf{Processing:} Assignment stored and activated.  
+
+\textbf{Output:} Assignment confirmation  
+
+\textbf{Priority:} Medium  
+
+\textbf{Dependency:} FR-2.1, FR-2.2  
+
+% ---------------------------------
+
+\subsubsection{Seat Booking System}
+
+\paragraph{FR-3.1: Seat Booking}
+\textbf{Description:}  
+The system shall allow users to book seats online.
+
+\textbf{Input:} Route selection, schedule, seat number  
+
+\textbf{Processing:} Seat availability checked and booking stored.  
+
+\textbf{Output:} Booking confirmation   
+
+\textbf{Dependency:} FR-2.2  
+
+\paragraph{FR-3.2: Booking Cancellation}
+\textbf{Description:}  
+The system shall allow users to cancel bookings.
+
+\textbf{Input:} Booking ID  
+
+\textbf{Processing:} Booking status updated.  
+
+\textbf{Output:} Cancellation confirmation  
+
+\textbf{Dependency:} FR-3.1  
+
+\paragraph{FR-3.3: Booking History}
+\textbf{Description:}  
+The system shall display past and current bookings.
+
+\textbf{Input:} User ID  
+
+\textbf{Processing:} Fetch booking records.  
+
+\textbf{Output:} Booking history list  
+
+\textbf{Dependency:} FR-3.1  
+
+\paragraph{FR-3.4: Seat Availability Display}
+\textbf{Description:}  
+The system shall show available seats in real time.
+
+\textbf{Input:} Route and schedule selection  
+
+\textbf{Processing:} Seat count calculated.  
+
+\textbf{Output:} Available seat display  
+
+\textbf{Dependency:} FR-3.1  
+
+% ---------------------------------
+
+\subsubsection{Real-Time Bus Tracking}
+
+\paragraph{FR-4.1: GPS Integration}
+\textbf{Description:}  
+The system shall integrate GPS devices installed in buses.
+
+\textbf{Input:} GPS coordinates  
+
+\textbf{Processing:} Location data updated continuously.  
+
+\textbf{Output:} Live location data   
+
+\textbf{Dependency:} Hardware availability  
+
+\paragraph{FR-4.2: Live Location Display}
+\textbf{Description:}  
+The system shall display live bus location on map.
+
+\textbf{Input:} GPS data  
+
+\textbf{Processing:} Map rendering via API.  
+
+\textbf{Output:} Bus shown on map  
+
+\textbf{Dependency:} FR-4.1  
+
+\paragraph{FR-4.3: Route Progress Tracking}
+\textbf{Description:}  
+The system shall track route progress in real time.
+
+\textbf{Input:} Bus movement data  
+
+\textbf{Processing:} Compare location with route stops.  
+
+\textbf{Output:} Progress status  
+
+\textbf{Dependency:} FR-4.2  
+
+% ---------------------------------
+
+\subsubsection{Notification System}
+
+\paragraph{FR-5.1: Booking Confirmation}
+System shall send confirmation after booking.  
+
+\textbf{Dependency:} FR-3.1  
+
+\paragraph{FR-5.2: Delay Notifications}
+System shall notify users of delays.   
+
+\textbf{Dependency:} FR-4.1  
+
+\paragraph{FR-5.3: Schedule Change Alerts}
+System shall alert users of schedule changes.   
+
+\textbf{Dependency:} FR-2.2  
+
+\paragraph{FR-5.4: Emergency Notifications}
+System shall send emergency alerts instantly.   
+
+\textbf{Dependency:} FR-4.1  
+
+% ---------------------------------
+
+\subsubsection{Administrative Functions}
+
+\paragraph{FR-6.1: Dashboard Overview}
+System shall provide admin overview dashboard.  
+
+\paragraph{FR-6.2: User Management}
+Admins shall manage user accounts.  
+
+\paragraph{FR-6.3: Driver Management}
+Admins shall manage drivers.  
+
+\paragraph{FR-6.4: Vehicle Management}
+Admins shall manage buses.  
+
+\paragraph{FR-6.5: Report Generation}
+System shall generate usage and performance reports.  
+
+\textbf{Dependency:} FR-1.2  
+
+% ---------------------------------
+
+\subsubsection{Special Vehicle Booking for Faculty}
+
+\paragraph{FR-7.1: Special Trip Request}
+Faculty can request special trips.  
+
+\paragraph{FR-7.2: Request Approval Workflow}
+Admins approve or reject requests.  
+
+% =========================
+% 3.2 EXTERNAL INTERFACE REQUIREMENTS
+% =========================
+\subsection{External Interface Requirements}
+
+This section describes all external interfaces of the Namal University Transport Management System (NUTMS) in accordance with IEEE Software Requirements Specification (SRS) standards. It includes user interfaces, hardware interfaces, software interfaces, and communication interfaces.
+
+% -------------------------
+\subsubsection{User Interfaces}
+
+The Namal University Transport Management System (NUTMS) shall provide a web-based, responsive, and user-friendly interface accessible through desktops, laptops, tablets, and mobile devices. The system interface shall be:
+
+\begin{itemize}
+    \item Consistent in layout, color scheme, and navigation
+    \item Role-based (Student, Faculty, Driver, Administrator)
+    \item Easy to use for non-technical users
+\end{itemize}
+
+\paragraph{UI-1: Homepage Interface} The homepage shall provide:
+\begin{itemize}
+    \item Login and registration options
+    \item System overview
+    \item Navigation links to main system features
+\end{itemize}
+
+\paragraph{UI-2: Booking Interface} The booking interface shall allow users to:
+\begin{itemize}
+    \item Select bus routes and schedules
+    \item View seat availability
+    \item Confirm or cancel bookings
+\end{itemize}
+
+\paragraph{UI-3: Tracking Interface} The tracking interface shall:
+\begin{itemize}
+    \item Display real-time bus location on a map
+    \item Show route progress and bus status
+\end{itemize}
+
+\paragraph{UI-4: Administrative Dashboard} The administrative dashboard shall allow administrators to:
+\begin{itemize}
+    \item Manage users, drivers, and vehicles
+    \item Configure routes and schedules
+    \item View system reports and analytics
+\end{itemize}
+
+\paragraph{UI-5: Driver Interface} The driver interface shall allow drivers to:
+\begin{itemize}
+    \item View assigned routes and schedules
+    \item Update trip status (start, delay, end)
+\end{itemize}
+
+% -------------------------
+\subsubsection{Hardware Interfaces}
+
+This section describes the hardware components that interact with the system.
+
+\paragraph{HW-1: GPS Device Interface} GPS devices installed in buses shall:
+\begin{itemize}
+    \item Transmit real-time location data
+    \item Continuously update bus coordinates to the system
+\end{itemize}
+
+\paragraph{HW-2: Mobile Device Compatibility} The system shall be accessible using:
+\begin{itemize}
+    \item Smartphones
+    \item Tablets
+    \item Laptops and desktop computers
+\end{itemize}
+No special hardware configuration shall be required.
+
+\paragraph{HW-3: Server Hardware} The system shall be hosted on cloud-based servers capable of:
+\begin{itemize}
+    \item Supporting multiple concurrent users
+    \item Handling real-time data processing
+\end{itemize}
+
+% -------------------------
+\subsubsection{Software Interfaces}
+
+This section describes software systems and services that interface with NUTMS.
+
+\paragraph{SW-1: Operating System Interface} The system shall operate on servers running:
+\begin{itemize}
+    \item Microsoft Windows
+    \item Linux-based operating systems
+\end{itemize}
+
+\paragraph{SW-2: Database Management System Interface} The system shall use PostgreSQL as the relational database management system to ensure:
+\begin{itemize}
+    \item Secure data storage
+    \item Transaction reliability
+    \item Data integrity
+\end{itemize}
+
+\paragraph{SW-3: Web Browser Interface} The system shall be compatible with modern web browsers, including:
+\begin{itemize}
+    \item Google Chrome
+    \item Mozilla Firefox
+    \item Microsoft Edge
+\end{itemize}
+
+\paragraph{SW-4: Third-Party APIs} The system shall integrate with:
+\begin{itemize}
+    \item Map APIs (Google Maps / OpenStreetMap) for route visualization
+    \item Email services for notifications
+    \item SMS gateway services for alerts and emergency messages
+\end{itemize}
+
+\paragraph{SW-5: Web Server Interface} The backend of the system shall be implemented using:
+\begin{itemize}
+    \item Node.js
+    \item Express.js
+\end{itemize}
+to handle API requests, authentication, and real-time communication.
+
+% -------------------------
+\subsubsection{Communication Interfaces}
+
+This section defines communication mechanisms used by the system.
+
+\paragraph{COM-1: HTTP/HTTPS Protocol} The system shall use HTTP/HTTPS protocols for secure web communication. HTTPS shall be enforced for sensitive data transmission.
+
+\paragraph{COM-2: WebSocket Protocol} WebSocket communication shall be used to support:
+\begin{itemize}
+    \item Real-time bus tracking
+    \item Live notifications
+\end{itemize}
+
+\paragraph{COM-3: Email Protocol} SMTP shall be used to send:
+\begin{itemize}
+    \item Booking confirmations
+    \item Schedule updates
+    \item System notifications
+\end{itemize}
+
+\paragraph{COM-5: Database Communication} Secure communication protocols shall be used between the application server and the PostgreSQL database.
+
+\subsection{Non-Functional Requirements }
+
+\subsubsection{Performance}
+\begin{itemize}
+    \item System shall load all pages fast, within three seconds under the network conditions.
+    \item Booking transactions shall be completed within two seconds.
+    \item Real-time bus location updates shall arrive within five seconds.
+\end{itemize}
+
+\subsubsection{Reliability \& Availability}
+\begin{itemize}
+    \item System must stay up 99\% of the time during each session.
+    \item System will use PostgreSQL transactions to store and protect booking and tracking data.
+    \item Automated backups shall run daily to prevent data loss.
+\end{itemize}
+
+\subsubsection{Security}
+\begin{itemize}
+    \item System shall provide login functionality and permissions for students, drivers, and administrators.
+    \item Role-Based Access Control (RBAC) shall protect access to system features.
+    \item Data shall be encrypted during transmission using HTTPS.
+\end{itemize}
+
+\subsubsection{Usability}
+\begin{itemize}
+    \item User interface shall be simple, intuitive, and responsive for desktop and mobile devices.
+    \item Basic features, such as tracking, require no prior training for new users.
+    \item Error messages shall be clear and user-friendly.
+\end{itemize}
+
+\subsubsection{Scalability}
+\begin{itemize}
+    \item System shall handle additional users and routes without redesign.
+    \item Architecture shall support addition of new features, apps, and payment gateways.
+\end{itemize}
+
+\subsubsection{Maintainability}
+\begin{itemize}
+    \item System shall be built using React.js (frontend) and Node.js (backend).
+    \item Source code shall include comments and be managed via Git version control.
+\end{itemize}
+
+\subsection{Design Constraints}
+
+The design and implementation of the NUTMS system are subject to the following constraints, which define the technological, operational, and regulatory boundaries within which the system must function:
+
+\begin{itemize}
+    \item \textbf{Web-Based Architecture }:  
+    The system shall be developed strictly as a web-based application. The frontend shall be implemented using React.js to ensure modularity, responsiveness, and maintainability, while the backend shall be developed using Node.js with the Express.js framework to support scalable server-side processing and RESTful API services.
+
+    \item \textbf{Database Technology }:  
+    PostgreSQL shall be used as the primary database management system. All data related to users, bookings, routes, tracking information, and system logs shall be stored and managed using PostgreSQL to ensure data consistency, integrity, and support for ACID-compliant transactions.
+
+    \item \textbf{Browser Compatibility }:  
+    The system shall be compatible with modern web browsers, including Google Chrome, Mozilla Firefox, and Microsoft Edge. The design shall avoid browser-specific dependencies to ensure consistent behavior and user experience across supported platforms.
+
+    \item \textbf{Network Dependency }:  
+    Continuous internet connectivity is required for core system functionalities, including real-time bus tracking, live notifications, and online seat booking. The system shall be designed to handle temporary network disruptions gracefully where possible.
+
+    \item \textbf{Security and Privacy }:  
+    The system shall comply with university IT policies, data protection standards, and applicable data privacy regulations. User authentication, authorization, and secure data transmission shall be mandatory design requirements to prevent unauthorized access and data breaches.
+
+    \item \textbf{Cost and Resource }:  
+    The system shall be developed using open-source and cost-effective tools wherever possible. Deployment and hosting solutions shall prioritize free or low-cost service tiers without compromising system reliability or scalability.
+
+    \item \textbf{Maintainability }:  
+    The system architecture shall support ease of maintenance and future enhancements. Source code shall follow standard coding practices, include appropriate documentation, and be managed using version control systems to facilitate collaboration and long-term maintenance.
+
+    \item \textbf{Scalability }:  
+    The system design shall allow for future growth in the number of users, routes, and services without requiring significant architectural redesign.
+\end{itemize}
+
+
+% =========================
+% APPENDICES
+% =========================
+\begin{appendix}
+
+
+
+
+\section{Meeting Minutes Reference}
+You can access the document from following link
+
+https://docs.google.com/spreadsheets/d/180hqUDHGpHp8CMqTwAZxo9n5CBqNpvm2eWgDv0xX13s/edit?usp=sharing
+
+\section{GitHub Repository}
+The complete project repository is available at :
+
+https://github.com/Altaf-Hussain-11/SE-Project-Transport-Management-System-.git
+\newpage
+
+\section{Context Diagram}
+
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Context_Diagram.jpeg} 
+    \caption{Context Diagram}
+    \label{fig:context}
+\end{figure}
+\newpage
+
+\section{Use Case Diagram}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Usecase_Diagram.jpeg}
+    \caption{Use Case Diagram}
+    \label{fig:usecase}
+\end{figure}
+
+\end{appendix}
+
+\end{document}
