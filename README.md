@@ -59,5 +59,8 @@ The Scrum Agile Methodology is used for this project because :
 - **Node.js with Express.js**: Manages authentication, APIs, notifications, and booking operations.  
 
 ## Database
-- **PostgreSQL**: Stores user details, bookings, routes, and payment information.  
+- **PostgreSQL**: Stores user details, bookings, routes, and payment information.
+
+## The Link of the Google Sheets is as folllowed :
+https://docs.google.com/spreadsheets/d/180hqUDHGpHp8CMqTwAZxo9n5CBqNpvm2eWgDv0xX13s/edit?usp=sharing 
 
