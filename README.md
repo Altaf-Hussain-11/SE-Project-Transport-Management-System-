@@ -64,3 +64,6 @@ The Scrum Agile Methodology is used for this project because :
 ## The Link of the Google Sheets is as folllowed :
 https://docs.google.com/spreadsheets/d/180hqUDHGpHp8CMqTwAZxo9n5CBqNpvm2eWgDv0xX13s/edit?usp=sharing 
 
+## The Link of the Google Sheets is as folllowed :
+https://www.figma.com/make/BSx3HRTdplYAIGmDAfMgEJ/Namal-University-Transport-Management-System?fullscreen=1&t=QrFnijkgUWWwQnzL-1
+
