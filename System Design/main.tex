@@ -1,0 +1,596 @@
+\documentclass[12pt]{article}
+
+% Packages
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{setspace}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{float} % for figure[H]
+
+% Hyperlink settings
+\hypersetup{
+    hidelinks
+}
+
+\setstretch{1.15}
+
+\begin{document}
+
+% Title Page
+\begin{titlepage}
+    \centering
+    \vspace*{1.5cm}
+    
+    {\Large\textbf{Namal University Transport Management System (NUTMS)}\par}
+    \vspace{0.5cm}
+    {\Large\textbf{System Design Report – Milestone 3}\par}
+    \vspace{1cm}
+    
+    \includegraphics[width=5cm]{logo.png}
+    
+    \vspace{2cm}
+    
+    \begin{tabular}{c l l}
+        1 & Altaf Hussain & NUM-BSCS-2024-11 \\
+        2 & Rabia Ashraf  & NUM-BSCS-2024-65 \\
+        3 & Najia Nayab   & NUM-BSCS-2024-62 \\
+    \end{tabular}
+    
+    \vfill
+    
+    {\large Department of Computer Science\par}
+    {\large Namal University Mianwali\par}
+    \vspace{0.3cm}
+    {\normalsize 18\textsuperscript{th} January, 2026\par}
+    
+\end{titlepage}
+
+% Table of Contents
+\tableofcontents
+\newpage
+
+% Introduction
+\section{Introduction}
+
+\subsection{Purpose of this Document}
+This Design Report presents the complete system design for the Namal University Transport Management System (NUTMS). It translates the Software Requirements Specification (SRS) into detailed design artifacts including UML diagrams, prototypes, and architectural decisions. This document serves as a bridge between the requirements and the actual implementation of the system.
+
+\subsection{Scope}
+This document covers the following areas:
+
+\begin{itemize}
+    \item Complete UML diagrams representing system behavior and structure
+    \item Design decisions and their justifications based on SRS requirements
+    \item Traceability mapping from requirements to design elements
+    \item Prototypes validated with stakeholders through meetings
+    \item Design assumptions and constraints
+    \item Component architecture and system organization
+\end{itemize}
+
+% Design Assumptions and Constraints
+\section{Design Assumptions and Constraints}
+
+\subsection{Design Assumptions}
+
+\subsubsection{Technical Assumptions}
+\begin{enumerate}
+    \item \textbf{GPS Availability:} All university buses have functional GPS devices capable of transmitting real-time location data every 10-30 seconds with accuracy within 10-20 meters.
+    \item \textbf{Network Connectivity:} Stable internet connectivity is available on campus and in most areas covered by bus routes. Campus WiFi infrastructure supports system access for students and staff.
+    \item \textbf{User Device Access:} Students, faculty, and staff have access to smartphones, tablets, or computers with modern web browsers (Chrome, Firefox, or Edge released within the last 3 years).
+    \item \textbf{Database Capacity:} PostgreSQL database can handle concurrent bookings and tracking data for multiple buses and users during peak hours without performance issues.
+    \item \textbf{Email Service:} University SMTP server or external email service is reliable and available for notification delivery with minimal delay.
+    \item \textbf{Map Services:} OpenStreetMap data is accurate and available for Mianwali region and university campus areas.
+\end{enumerate}
+
+\subsubsection{Operational Assumptions}
+\begin{enumerate}
+    \item \textbf{User Roles:} Users are pre-categorized as Student, Faculty, Driver, or Administrator based on university registration and email domain.
+    \item \textbf{Route Stability:} Bus routes and schedules remain relatively stable within a semester, with changes occurring primarily at semester boundaries or due to special circumstances.
+    \item \textbf{Peak Usage:} Maximum concurrent users during peak hours (morning and evening) is estimated based on total student and faculty population.
+    \item \textbf{GPS Accuracy:} GPS coordinates are accurate within 10-20 meters, sufficient for tracking bus progress along routes.
+    \item \textbf{Session Duration:} User sessions automatically timeout after 30 minutes of inactivity for security purposes.
+\end{enumerate}
+
+\subsubsection{Business Assumptions}
+\begin{enumerate}
+    \item \textbf{Approval Workflow:} Special vehicle booking requests from faculty follow a defined approval hierarchy with higher authority consent required.
+    \item \textbf{Capacity Limits:} Each bus has a fixed seating capacity that must be strictly enforced to prevent overcrowding and maintain safety.
+    \item \textbf{Cancellation Policy:} Users can cancel bookings up to a certain time before departure, freeing seats for other users.
+    \item \textbf{Academic Calendar:} System operates according to university academic calendar, with potential downtime during semester breaks.
+    \item \textbf{Record Retention:} Booking and trip records are maintained for a minimum of one academic year for reporting and audit purposes.
+\end{enumerate}
+
+\subsection{Design Constraints}
+\subsubsection{Technology Constraints}
+\begin{enumerate}
+    \item \textbf{Platform:} Web-based application only, accessible through web browsers on various devices.
+    \item \textbf{Frontend Technology:} React.js framework for building responsive and interactive user interfaces.
+    \item \textbf{Backend Technology:} Node.js runtime with Express.js framework for server-side logic and API handling.
+    \item \textbf{Database:} PostgreSQL relational database management system for all data storage.
+    \item \textbf{Browser Support:} Must support Google Chrome, Mozilla Firefox, and Microsoft Edge (modern versions only).
+    \item \textbf{Storage Restriction:} No use of browser localStorage or sessionStorage due to artifact environment limitations.
+    \item \textbf{Real-time Communication:} WebSocket protocol (Socket.io) for real-time GPS updates and notifications.
+\end{enumerate}
+
+\subsubsection{Performance Constraints}
+\begin{enumerate}
+    \item \textbf{Page Load Time:} All pages must load within 3 seconds under normal network conditions.
+    \item \textbf{Booking Transaction:} Booking confirmation must complete within 2 seconds.
+    \item \textbf{GPS Update Frequency:} Real-time bus location updates every 10-30 seconds.
+    \item \textbf{Concurrent Users:} System must support multiple concurrent users, especially during peak booking periods.
+    \item \textbf{System Availability:} 99\% uptime during academic semesters.
+\end{enumerate}
+
+\subsubsection{Security Constraints}
+\begin{enumerate}
+    \item \textbf{Authentication:} Secure user authentication with hashed password storage.
+    \item \textbf{Communication:} All data transmission over HTTPS with TLS encryption.
+    \item \textbf{Access Control:} Role-based access control (RBAC) to restrict functions based on user roles.
+    \item \textbf{Data Privacy:} Users can only view their own booking history and personal information.
+    \item \textbf{Input Validation:} Protection against SQL injection, XSS, and other common web vulnerabilities.
+\end{enumerate}
+
+\subsubsection{Regulatory and Policy Constraints}
+\begin{enumerate}
+    \item \textbf{University Policies:} Adherence to university transport policies regarding passenger limits and route allocations.
+    \item \textbf{Safety Regulations:} Strict enforcement of vehicle capacity limits as per safety regulations.
+    \item \textbf{Data Protection:} Compliance with university IT policies and data protection standards.
+\end{enumerate}
+
+\newpage
+
+\section{Key Design Decisions}
+
+This section summarizes the main design decisions made for the Namal University Transport Management System (NUTMS).
+
+\subsection{Breaking Down the System (DFD Decomposition)}
+
+\subsubsection{Level 0 DFD}
+
+\textbf{Decision:}  
+A Level 0 DFD (Context Diagram) was created to represent the entire system as a single process interacting with external entities.
+
+\textbf{Justification:}
+\begin{itemize}
+    \item Provides a high-level overview of the system
+    \item Clearly shows system boundaries
+    \item Easy for non-technical stakeholders to understand
+\end{itemize}
+
+\subsubsection{Level 1 DFD Processes}
+
+\textbf{Decision:}  
+The system was divided into five main processes:
+\begin{itemize}
+    \item Authentication
+    \item View Routes \& Schedules
+    \item Tracking
+    \item GPS Tracking
+    \item Notification Management
+\end{itemize}
+
+\textbf{Justification:}
+\begin{itemize}
+    \item Each process performs a single clear function
+    \item Matches the main features in the SRS
+    \item Easy for users and developers to understand
+\end{itemize}
+
+\subsubsection{Level 2 DFD for Route \& Schedule Management}
+
+\textbf{Decision:}  
+A Level 2 DFD was created only for Route \& Schedule Management, divided into:
+\begin{itemize}
+    \item Maintain Routes \& Stops
+    \item Maintain Schedules
+    \item Save Schedule
+\end{itemize}
+
+\textbf{Justification:}
+\begin{itemize}
+    \item Route and schedule handling is more complex
+    \item Clearly shows admin workflow
+    \item Routes must be created before schedules
+\end{itemize}
+
+\textbf{Justification:}
+\begin{itemize}
+    \item They are simple and straightforward
+    \item Activity diagrams already show detailed workflows
+\end{itemize}
+
+\subsection{Class Diagram Design}
+
+\subsubsection{User Inheritance}
+
+\textbf{Decision:}  
+\texttt{User} was designed as a parent class for Student, Faculty, Driver, and Administrator.
+
+\textbf{Justification:}
+\begin{itemize}
+    \item Common attributes are shared
+    \item Supports role-based access
+\end{itemize}
+
+\subsubsection{Key Relationships}
+
+\begin{itemize}
+    \item \textbf{Bus–Schedule (Composition):} Schedule depends on Bus
+    \item \textbf{Driver–Bus (Association):} Temporary assignments
+    \item \textbf{Student/Faculty–Schedule (Association):} View-only access
+\end{itemize}
+
+\textbf{Decision:}  
+Same names and structures were used across all diagrams.
+
+\textbf{Justification:}
+\begin{itemize}
+    \item Improves traceability
+    \item Ensures alignment between design and implementation
+\end{itemize}
+
+\newpage
+
+
+% System Design Diagrams
+\section{System Design Diagrams}
+
+\subsection{Use Case Diagram}
+% Add Use Case Diagram if available
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Usecase_Diagram.jpeg}
+    \caption{Use Case Diagram showing NUTMS actors and their interactions}
+    \label{fig:usecase}
+\end{figure}
+
+\subsection{Data Flow Diagrams}
+
+\subsubsection{Level 0 : Context Diagram}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{DFD_Level_0.jpeg}
+    \caption{NUTMS Context Diagram - System interactions with external actors}
+    \label{fig:context}
+\end{figure}
+
+\subsubsection{Level 1}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{DFD_Level_01.jpeg}
+    \caption{Level 1 DFD }
+    \label{fig:dfd_level2}
+\end{figure}
+
+\subsubsection{Level 2}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{DFD_Level_02.jpeg}
+    \caption{Level 1 DFD }
+    \label{fig:dfd_level2}
+\end{figure}
+
+\subsection{Sequence Diagram}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Sequence_Diagram.jpeg}
+    \caption{Sequence diagram}
+    \label{fig:seq_booking}
+\end{figure}
+
+\subsection{Activity Diagrams}
+\subsubsection{Registration Activity}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Registration_Activity.png}
+    \caption{Activity diagram for user registration process}
+    \label{fig:registration_activity}
+\end{figure}
+
+\subsubsection{Login Activity}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Login_Activity.png}
+    \caption{Activity diagram for user login process}
+    \label{fig:login_activity}
+\end{figure}
+
+
+\subsubsection{Notification Activity}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Notification_Activity.png}
+    \caption{Activity diagram for notification management}
+    \label{fig:notification_activity}
+\end{figure}
+
+\subsubsection{Vehicle Booking Activity}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Vehicle_Booking_Activity.png}
+    \caption{Activity diagram for vehicle booking process}
+    \label{fig:vehicle_booking_activity}
+\end{figure}
+
+
+\subsubsection{Bus Tracking Activity}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Bus_Tracking_Activity.png}
+    \caption{Activity diagram for real-time bus tracking process}
+    \label{fig:bus_tracking_activity}
+\end{figure}
+
+
+\subsubsection{Admin Activity}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Admin_Activity.png}
+    \caption{Activity diagram for administrator operations}
+    \label{fig:admin_activity}
+\end{figure}
+
+\subsection{Class Diagram}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Class_Diagram.png}
+    \caption{Class Diagram showing all system classes and relationships}
+    \label{fig:class_diagram}
+\end{figure}
+
+\subsection{Component Diagram}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Component_Diagram.jpeg}
+    \caption{Component diagram showing modular decomposition of NUTMS}
+    \label{fig:component_diagram}
+\end{figure}
+
+\newpage
+
+\newpage
+
+\section{Requirements–Design Traceability Table}
+
+This traceability table demonstrates how each functional requirement from the SRS is addressed in the system design through various design artifacts.
+
+\renewcommand{\arraystretch}{1.3}
+
+\begin{longtable}{|p{1.5cm}|p{3.5cm}|p{9.5cm}|}
+\hline
+\textbf{Req ID} & \textbf{Requirement} & \textbf{Design Artifacts} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Req ID} & \textbf{Requirement} & \textbf{Design Artifacts} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+FR-1.1 & User Registration & 
+- Use Case: User Registration
+\newline - Context Diagram (Level 0)
+\newline - DFD Level 1: Authentication Module
+\newline - Sequence Diagram: User Registration Flow
+\newline - Activity Diagram: Registration Activity
+\newline - Classes: User, Student, Faculty, Driver, Administrator
+\newline - Components: Authentication Module
+\newline - Prototype: Registration Form, User Profile Setup \\
+\hline
+
+FR-1.2 & User Authentication & 
+- Use Case: User Login
+\newline - Context Diagram (Level 0)
+\newline - DFD Level 1: Authentication Module
+\newline - Sequence Diagram: Login Sequence
+\newline - Activity Diagram: Login Activity
+\newline - Classes: User (login() method)
+\newline - Components: Authentication Module
+\newline - Prototype: Login Screen, Dashboard Access \\
+\hline
+
+FR-1.3 & Profile Management & 
+- Use Case: Manage Profile
+\newline - DFD Level 1: Authentication Module
+\newline - Sequence Diagram: Profile Update Flow
+\newline - Activity Diagram: User Profile Management
+\newline - Classes: User (updateProfile() method)
+\newline - Components: Authentication Module
+\newline - Prototype: User Profile Screen, Edit Profile Interface \\
+\hline
+
+FR-2.1 & Route Definition & 
+- Use Case: Manage Routes
+\newline - Context Diagram (Level 0)
+\newline - DFD Level 2: Maintain Routes \& Stops
+\newline - Sequence Diagram: Route Creation Sequence
+\newline - Activity Diagram: Route Management Activity
+\newline - Classes: Route (addStop(), removeStop(), updateRouteDetails())
+\newline - Components: Route \& Schedule Management
+\newline - Prototype: Admin Dashboard, Route Management Interface \\
+\hline
+
+FR-2.2 & Schedule Management & 
+- Use Case: Manage Schedules
+\newline - Context Diagram (Level 0)
+\newline - DFD Level 2: Maintain Schedules
+\newline - Sequence Diagram: Schedule Creation/Update Flow
+\newline - Activity Diagram: Schedule Management Activity
+\newline - Classes: Schedule (createSchedule(), updateSchedule(), deleteSchedule())
+\newline - Components: Route \& Schedule Management
+\newline - Prototype: Schedule Configuration Screen, Calendar View \\
+\hline
+
+FR-2.3 & Route Assignment & 
+- Use Case: Assign Resources
+\newline - DFD Level 2: Save Schedule
+\newline - Sequence Diagram: Driver/Bus Assignment Sequence
+\newline - Activity Diagram: Assignment Workflow
+\newline - Classes: Schedule (assignDriver()), Bus (assignDriver())
+\newline - Components: Route \& Schedule Management
+\newline - Prototype: Driver Assignment Interface, Bus Allocation Screen \\
+\hline
+
+FR-3.1 & GPS Integration & 
+- Use Case: GPS Tracking
+\newline - Context Diagram (Level 0)
+\newline - DFD Level 1: GPS Tracking Module
+\newline - Sequence Diagram: Real-Time Bus Tracking Sequence
+\newline - Activity Diagram: GPS Data Reception Activity, Bus Tracking Activity
+\newline - Classes: GPSDevices (sendLocationUpdate())
+\newline - Components: GPS Tracking Module
+\newline - Prototype: Live Tracking Map \\
+\hline
+
+FR-3.2 & Live Location Display & 
+- Use Case: Track Buses
+\newline - DFD Level 1: Tracking Module
+\newline - Sequence Diagram: Real-Time Bus Tracking Sequence
+\newline - Activity Diagram: Bus Tracking Activity, Bus Location Display
+\newline - Classes: Route, GPSDevices
+\newline - Components: GPS Tracking Module
+\newline - Prototype: Interactive Map Screen, Bus Position Viewer \\
+\hline
+
+FR-3.3 & Route Progress Tracking & 
+- Use Case: Track Buses
+\newline - DFD Level 1: Tracking Module
+\newline - Sequence Diagram: Real-Time Bus Tracking Sequence
+\newline - Activity Diagram: Bus Tracking Activity
+\newline - Classes: Route (getStops(), getDistance())
+\newline - Components: GPS Tracking Module
+\newline - Prototype: Progress Indicator, ETA Display \\
+\hline
+
+FR-4.1 & Booking Confirmation & 
+- Use Case: Notification System
+\newline - Context Diagram (Level 0)
+\newline - DFD Level 1: Notification Management Module
+\newline - Sequence Diagram: Booking Confirmation Flow
+\newline - Activity Diagram: Notification Activity
+\newline - Classes: Notification (sendNotification())
+\newline - Components: Notification Module
+\newline - Prototype: Booking Confirmation Email Template \\
+\hline
+
+FR-4.2 & Delay Notifications & 
+- Use Case: Notification System
+\newline - DFD Level 1: Notification Management Module
+\newline - Sequence Diagram: Delay/Emergency Notification Sequence
+\newline - Activity Diagram: Notification Activity, Delay Alert Activity
+\newline - Classes: Notification (sendNotification())
+\newline - Components: Notification Module
+\newline - Prototype: Delay Alert Email, Push Notification \\
+\hline
+
+FR-4.3 & Schedule Change Alerts & 
+- Use Case: Notification System
+\newline - DFD Level 1: Notification Management Module
+\newline - Sequence Diagram: Schedule Change Notification Flow
+\newline - Activity Diagram: Notification Activity
+\newline - Classes: Schedule (notifyScheduleChange()), Notification
+\newline - Components: Notification Module
+\newline - Prototype: Schedule Update Email Template \\
+\hline
+
+FR-4.4 & Emergency Notifications & 
+- Use Case: Notification System
+\newline - DFD Level 1: Notification Management Module
+\newline - Sequence Diagram: Delay/Emergency Notification Sequence
+\newline - Activity Diagram: Notification Activity, Emergency Broadcast
+\newline - Classes: Notification, Administrator (sendEmergencyAlert())
+\newline - Components: Notification Module
+\newline - Prototype: Emergency Alert Interface, Broadcast Message Screen \\
+\hline
+
+FR-5.1 & Dashboard Overview & 
+- Use Case: Administrative Dashboard
+\newline - Sequence Diagram: Admin Dashboard Access
+\newline - Activity Diagram: Admin Activity, Dashboard Loading Activity
+\newline - Classes: Administrator (viewDashboard())
+\newline - Components: Administrative Module
+\newline - Prototype: Admin Dashboard Homepage \\
+\hline
+
+FR-5.2 & User Management & 
+- Use Case: User Management
+\newline - Context Diagram (Level 0)
+\newline - DFD Level 1: Authentication Module (Create/Update/Delete User)
+\newline - Sequence Diagram: User Management Flow
+\newline - Activity Diagram: Admin Activity, User CRUD Activity
+\newline - Classes: Administrator (addUser(), deleteUser(), updateUser())
+\newline - Components: Administrative Module
+\newline - Prototype: User Management Panel, Role Assignment Screen \\
+\hline
+
+FR-5.3 & Driver and Vehicle Management & 
+- Use Case: Driver/Vehicle Management
+\newline - DFD Level 1: Add/Update/Remove (Vehicles/Drivers)
+\newline - Sequence Diagram: Driver Assignment Sequence
+\newline - Activity Diagram: Admin Activity, Driver/Vehicle CRUD Activity
+\newline - Classes: Bus (assignDriver(), updateStatus()), Driver (viewSchedule())
+\newline - Components: Administrative Module
+\newline - Prototype: Driver Management Screen, Vehicle Registry \\
+\hline
+
+FR-5.4 & Report Generation & 
+- Use Case: Reporting
+\newline - DFD Level 1: Generate Report Process
+\newline - Sequence Diagram: Report Generation Flow
+\newline - Activity Diagram: Admin Activity, Report Creation Activity
+\newline - Classes: Report (generateReport(), exportPDF(), viewReport())
+\newline - Components: Administrative Module
+\newline - Prototype: Reports Dashboard, Export Options \\
+\hline
+
+FR-6.1 & Special Trip Request & 
+- Use Case: Special Vehicle Booking
+\newline - Context Diagram (Level 0)
+\newline - DFD Level 1: Request Submission Flow
+\newline - Sequence Diagram: Faculty Special Vehicle Request Sequence
+\newline - Activity Diagram: Vehicle Booking Activity, Special Trip Request
+\newline - Classes: SpecialTripRequest (submitRequest()), Faculty (requestSpecialTrip())
+\newline - Components: Booking Management Module
+\newline - Prototype: Special Trip Request Form \\
+\hline
+
+FR-6.2 & Request Approval Workflow & 
+- Use Case: Approve Special Requests
+\newline - DFD Level 1: Approval Workflow
+\newline - Sequence Diagram: Faculty Special Vehicle Request Sequence
+\newline - Activity Diagram: Vehicle Booking Activity, Request Approval
+\newline - Classes: SpecialTripRequest (approve(), reject()), Administrator (respondSpecialRequest())
+\newline - Components: Booking Management Module
+\newline - Prototype: Request Review Screen, Approval Interface \\
+\hline
+
+\end{longtable}
+
+
+
+\section{Appendix}
+
+\subsection{GitHub Repository}
+The complete project repository is available at following link :
+
+https://github.com/Altaf-Hussain-11/SE-Project-Transport-Management-System-.git
+
+\subsection{Meeting Minutes Reference}
+You can access the meeting minutes document from the following link:
+
+https://docs.google.com/spreadsheets/d/180hqUDHGpHp8CMqTwAZxo9n5CBqNpvm2eWgDv0xX13s/edit?usp=sharing
+
+
+\subsection{Figma Link}
+
+https://www.figma.com/make/BSx3HRTdplYAIGmDAfMgEJ/Namal-University-Transport-Management-System?t=CSUEbjsCcbeJFhXb-1
+
+\end{document}  
