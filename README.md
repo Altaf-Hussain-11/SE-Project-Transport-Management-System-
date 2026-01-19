@@ -61,9 +61,9 @@ The Scrum Agile Methodology is used for this project because :
 ## Database
 - **PostgreSQL**: Stores user details, bookings, routes, and payment information.
 
-## The Link of the Google Sheets is as folllowed :
+## The Link of the Google Sheets is as folllows :
 https://docs.google.com/spreadsheets/d/180hqUDHGpHp8CMqTwAZxo9n5CBqNpvm2eWgDv0xX13s/edit?usp=sharing 
 
-## The Link of the Google Sheets is as folllowed :
+## The Link of the figma is as folllows :
 https://www.figma.com/make/BSx3HRTdplYAIGmDAfMgEJ/Namal-University-Transport-Management-System?fullscreen=1&t=QrFnijkgUWWwQnzL-1
 
