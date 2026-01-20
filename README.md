@@ -2,7 +2,7 @@
 
 
 ## Overview :
-The Namal University Transport Management System (NUTMS) is a digital platform designed to automate and modernize the university's transport operations. The system provides students, faculty, and staff with the ability to book seats online, track buses in real time, and receive instant notifications regarding delays or schedule changes. For administrators and drivers, NUTMS offers a centralized platform to manage routes, monitor trips, and generate accurate reports, improving overall efficiency, safety, and user convenience.
+The Namal University Transport Management System (NUTMS) is a digital platform designed to automate and modernize the university's transport operations. The system provides students, faculty, and staff with the ability to track buses in real time, and receive instant notifications regarding delays or schedule changes. For administrators and drivers, NUTMS offers a centralized platform to manage routes, monitor trips, and generate accurate reports, improving overall efficiency, safety, and user convenience.
 
 ## Team Members :
 
@@ -22,7 +22,7 @@ The Namal University Transport Management System (NUTMS) is a digital platform d
 
 ## Problem Statement
 
-Despite operating a fleet of buses, the current system faces several challenges, including manual coordination for route management, seat bookings, and trip updates, which often causes delays and miscommunication. Students and faculty lack real-time updates on bus locations or delays, while limited control over seat allocation can lead to overcrowding during peak hours. Payment and fine processes are not automated, and administrators struggle to track usage, performance, and maintenance without a centralized system. A digital solution is needed to provide online booking, real-time tracking, seat limitation enforcement, notifications, and automated transactions.
+Despite operating a fleet of buses, the current system faces several challenges, including manual coordination for route management and trip updates, which often causes delays and miscommunication. Students and faculty lack real-time updates on bus locations or delays, while limited control over seat allocation can lead to overcrowding during peak hours.Administrators struggle to track usage, performance, and maintenance without a centralized system. A digital solution is needed to provide real-time tracking, seat limitation enforcement, notifications, and automated transactions.
 
 
 ## Project Objectives
